@@ -1,0 +1,3 @@
+shadow*
+ssh/ssh_host_*
+ssl/private/

@@ -1,0 +1,14 @@
+TARGETS = unattended-upgrades apache-htcacheclean lvm2-lvmpolld uuidd nmbd transmission-daemon lvm2-lvmetad lxcfs samba-ad-dc lxd open-vm-tools resolvconf apache2 ufw winbind mdadm smbd atd postfix vsftpd irqbalance plymouth urandom open-iscsi iscsid sendsigs rsyslog umountnfs.sh hwclock.sh networking umountfs cryptdisks cryptdisks-early umountroot mdadm-waitidle halt reboot
+iscsid: open-iscsi
+sendsigs: unattended-upgrades uuidd winbind mdadm nmbd transmission-daemon atd plymouth smbd open-iscsi lxcfs samba-ad-dc apache-htcacheclean postfix vsftpd irqbalance apache2 iscsid lxd open-vm-tools
+rsyslog: sendsigs winbind mdadm atd apache-htcacheclean postfix vsftpd irqbalance apache2
+umountnfs.sh: unattended-upgrades uuidd rsyslog winbind nmbd transmission-daemon atd sendsigs plymouth smbd lxcfs samba-ad-dc apache-htcacheclean postfix vsftpd irqbalance apache2 lxd open-vm-tools
+hwclock.sh: uuidd rsyslog atd
+networking: winbind nmbd transmission-daemon smbd open-iscsi samba-ad-dc postfix vsftpd apache2 iscsid umountnfs.sh
+umountfs: lvm2-lvmpolld unattended-upgrades uuidd networking winbind mdadm nmbd transmission-daemon atd urandom plymouth lvm2-lvmetad smbd open-iscsi hwclock.sh resolvconf lxcfs samba-ad-dc apache-htcacheclean postfix vsftpd irqbalance apache2 iscsid lxd open-vm-tools umountnfs.sh
+cryptdisks: umountfs
+cryptdisks-early: umountfs cryptdisks
+umountroot: cryptdisks-early umountfs cryptdisks
+mdadm-waitidle: umountroot
+halt: mdadm-waitidle umountroot
+reboot: mdadm-waitidle umountroot

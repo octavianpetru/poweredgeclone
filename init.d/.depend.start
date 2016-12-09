@@ -1,0 +1,20 @@
+TARGETS = lvm2-lvmpolld uuidd rsyslog nmbd transmission-daemon lvm2-lvmetad lxcfs samba-ad-dc lxd open-vm-tools killprocs apport apache2 single winbind mdadm smbd atd postfix vsftpd irqbalance ssh acpid rsync dbus cron plymouth rc.local grub-common ondemand
+INTERACTIVE = apache2
+apache2: rsyslog
+single: killprocs
+winbind: rsyslog
+mdadm: rsyslog
+smbd: nmbd
+atd: rsyslog
+postfix: rsyslog
+vsftpd: rsyslog
+irqbalance: rsyslog
+ssh: rsyslog
+acpid: rsyslog
+rsync: rsyslog
+dbus: rsyslog
+cron: rsyslog winbind
+plymouth: lvm2-lvmpolld uuidd rsyslog winbind mdadm nmbd smbd transmission-daemon atd lvm2-lvmetad lxcfs samba-ad-dc postfix vsftpd irqbalance apache2 lxd open-vm-tools apport ssh cron acpid rsync dbus
+rc.local: lvm2-lvmpolld uuidd rsyslog winbind mdadm nmbd smbd transmission-daemon atd lvm2-lvmetad lxcfs samba-ad-dc postfix vsftpd irqbalance apache2 lxd open-vm-tools apport ssh cron acpid rsync dbus
+grub-common: lvm2-lvmpolld uuidd rsyslog winbind mdadm nmbd smbd transmission-daemon atd lvm2-lvmetad lxcfs samba-ad-dc postfix vsftpd irqbalance apache2 lxd open-vm-tools apport ssh cron acpid rsync dbus
+ondemand: lvm2-lvmpolld uuidd rsyslog winbind mdadm nmbd smbd transmission-daemon atd lvm2-lvmetad lxcfs samba-ad-dc postfix vsftpd irqbalance apache2 lxd open-vm-tools apport ssh cron acpid rsync dbus
